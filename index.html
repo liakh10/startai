@@ -20,9 +20,8 @@ body{background:#000;color:var(--text);font-family:"Martian Mono",ui-monospace,m
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* hud */
-.hud{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:var(--pad);pointer-events:none}
+.hud{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:flex-end;align-items:center;gap:10px;padding:var(--pad);pointer-events:none}
 .hud>*{pointer-events:auto}
-.handle{font-size:11px;letter-spacing:.08em;color:var(--dim)}
 .keys{display:flex;gap:6px}
 .key{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:34px;padding:0 12px;border:1px solid #2a2a2a;background:rgba(0,0,0,.6);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text);transition:border-color .15s,color .15s}
 .key:hover{border-color:var(--white);color:var(--white)}
@@ -75,13 +74,12 @@ h1 span{display:block;font-weight:300;font-size:.42em;letter-spacing:.3em;color:
 .links{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .links .key{height:42px;padding:0 18px}
 .links .key.x{width:42px;padding:0}
-@media (max-width:640px){ .handle{display:none} .term{font-size:11px;max-width:calc(100% - 2*var(--pad));overflow:hidden} }
+@media (max-width:640px){ .term{font-size:11px;max-width:calc(100% - 2*var(--pad));overflow:hidden} }
 @media (prefers-reduced-motion:reduce){ .term i{animation:none} }
 </style>
 </head>
 <body>
 <div class="hud">
-  <span class="handle" id="handle">&gt; x.com/letsstartai</span>
   <div class="keys"><a class="key" data-link="pons" href="https://www.ponsfamily.com/launchpad"><img src="assets/img/pons.png" alt="" style="filter:invert(1)" />buy</a><a class="key x" data-link="x" href="https://x.com" aria-label="X"><img src="assets/img/x.svg" alt="" style="filter:invert(1)" /></a></div>
 </div>
 
@@ -119,7 +117,6 @@ h1 span{display:block;font-weight:300;font-size:.42em;letter-spacing:.3em;color:
   document.querySelectorAll('[data-link="pons"]').forEach(function(a){ a.href = HAS ? window.PONS_HOME + '/' + CA : window.PONS_HOME; a.target = '_blank'; a.rel = 'noopener'; });
   document.querySelectorAll('[data-link="dex"]').forEach(function(a){ a.href = HAS ? window.DEX_HOME + '/' + CA : window.DEX_HOME; a.target = '_blank'; a.rel = 'noopener'; });
   document.querySelectorAll('[data-link="x"]').forEach(function(a){ a.href = S.X_URL || 'https://x.com'; a.target = '_blank'; a.rel = 'noopener'; });
-  var h = (S.X_URL || '').replace(/^https?:\/\//, ''); if(h && h.indexOf('/soon') < 0) document.getElementById('handle').textContent = '> ' + h;
 
   /* contract */
   var ca = document.getElementById('ca'), addr = document.getElementById('addr'), cp = document.getElementById('cp');
